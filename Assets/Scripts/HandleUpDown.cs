@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,12 +7,7 @@ public class HandleUpDown:  MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     [SerializeField]
     ExtinguishingController extinguishingController;
 
-    void Start()
-    {
-        
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
+     public void OnPointerDown(PointerEventData eventData)
     {
         extinguishingController.StartExtinguishing();
     }

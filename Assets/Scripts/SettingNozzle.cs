@@ -15,7 +15,7 @@ public class SettingNozzle : MonoBehaviour, IPointerClickHandler
         InitPoints();
     }
 
-    private void InitPoints()
+    void InitPoints()
     {
         if (lineRenderer != null)
         {

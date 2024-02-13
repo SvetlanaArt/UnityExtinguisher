@@ -39,7 +39,7 @@ public class AnimHintEvents : MonoBehaviour
         nozzleCollider.enabled = true;
     }
 
-    public void EnableUchvyt()
+    public void EnableHandle()
     {
         handleCollider.enabled = true;
         isExtingNeedPositioning = true;
