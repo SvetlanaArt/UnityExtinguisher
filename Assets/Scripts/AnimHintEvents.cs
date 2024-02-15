@@ -10,7 +10,7 @@ public class AnimHintEvents : MonoBehaviour
     [SerializeField] Collider handleCollider;
 
     AudioShotPlayer player;
-    HintController hintController;
+    HintManager hintController;
 
     bool isExtingNeedPositioning;
 
@@ -23,7 +23,7 @@ public class AnimHintEvents : MonoBehaviour
     void InitEvents()
     {
         player = FindAnyObjectByType<AudioShotPlayer>();
-        hintController = FindAnyObjectByType<HintController>();
+        hintController = FindAnyObjectByType<HintManager>();
         isExtingNeedPositioning = false;
     }
 

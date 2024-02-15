@@ -13,7 +13,7 @@ public class FireController : MonoBehaviour
 
     MainModule mainModuleFire;
     AudioSource audioFire;
-    HintController hintController;
+    HintManager hintController;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class FireController : MonoBehaviour
         fireLevel = maxFireLevel;
         mainModuleFire = fire.main;
         audioFire = GetComponent<AudioSource>();
-        hintController = FindAnyObjectByType<HintController>();
+        hintController = FindAnyObjectByType<HintManager>();
     }
 
     void Update()

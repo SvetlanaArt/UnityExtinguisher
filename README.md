@@ -1,8 +1,8 @@
-# UnityExtinguisher
+## UnityExtinguisher
 Simulation of fire extinguisher operation in Unity 3D (Unity editor ver 2021.3.34f1)
 
 
-Task description:
+**Task description:**
 The fire extinguisher stands in front of the object that is on fire. 
 When the player clicks on the bolt the fire extinguisher will be unlocked. Then the player is to click on the nozzle, which will trigger the nozzle positioning itself. Now the player can click on the handle to start extinguishing. 
 The fire is supposed to be extinguishable if the player positions the extinguisher well (6s of extinguishing is supposed to put the fire out). The fire will "decrease" when it is extinguished and slowly increase when it stops being extinguished.
@@ -12,21 +12,21 @@ What is to be found on the UI:
 - the fire level
 
 
-Developer's Guide
+##Developer's Guide
 
 
-Scripts>
+#Scripts/
 
-public class AnimHintEvents : MonoBehaviour
-		Attached to Extinguisher GameObject
-		Contains methods that starts by animation events. 
-	void InitEvents() - initialization;
-	public void BoltFallDown() - starts at the end of the "BoltOutAnim" animation: the Bolt begins to fall down;
-	public void EnableHandle() - starts at the end of the "NozzleAnim" animation: enable the Nozzle Collider so a player can click on it;
-	public void BoltGetOut() - starts at the start of the "BoltOutAnim" animation: plays a corresponding sound using AudioPlayer;
-	public void ShowHint(string eventName) - starts at the end or at the start of several animations to show or hide a hint with "eventName"
-	public void ShowSliderHint() - starts after using UI>SliderExtinguisher and shows hint of using the extinguishing handle if variable isExtingNeedPositioning is true
-  	public void HandleUpDown() - starts at the start of the "HandleUpAnim" and the "HandleDownAnim" animations: plays a corresponding sound using AudioPlayer;
+public class **AnimHintEvents** : MonoBehaviour
+Attached to Extinguisher GameObject
+Contains methods that starts by animation events. 
+- void InitEvents() - initialization;
+- public void BoltFallDown() - starts at the end of the "BoltOutAnim" animation: the Bolt begins to fall down;
+- public void EnableHandle() - starts at the end of the "NozzleAnim" animation: enable the Nozzle Collider so a player can click on it;
+- public void BoltGetOut() - starts at the start of the "BoltOutAnim" animation: plays a corresponding sound using AudioPlayer;
+- public void ShowHint(string eventName) - starts at the end or at the start of several animations to show or hide a hint with "eventName"
+- public void ShowSliderHint() - starts after using UI>SliderExtinguisher and shows hint of using the extinguishing handle if variable isExtingNeedPositioning is true
+- public void HandleUpDown() - starts at the start of the "HandleUpAnim" and the "HandleDownAnim" animations: plays a corresponding sound using AudioPlayer;
 
 public class AudioShotPlayer : MonoBehaviour
 		Attached to AudioShotPlayer GameObject
@@ -78,7 +78,7 @@ public class UIController : MonoBehaviour
 		Attached to UI GameObject with Canvas component
 		Controls UI sliders to show correct values of the powder count (extinguishing time), the fire level and also correct the extinguisher position 
 
-Scripts>Hints>
+#Scripts/Hints/
 
 public class HintController : MonoBehaviour
 		Attached to HintController GameObject
@@ -89,7 +89,7 @@ public class Hints : ScriptableObject
 		Provides iterface to get a hint from the dictionary using an event name as a key.  
 
 
-Animations>
+#Animations/
 	Animation component attached to the Extinguisher GameObject
 
 BoltOutAnim - The bolt is pulled out of the fire extinguisher.
@@ -98,7 +98,7 @@ HandleUpAnim - The extinguisher handle goes down.
 HandleDownAnim - The extinguisher handle goes up.
 
 
-Particle systems>
+#Particle systems:
 
 Powder - GameObject containes a Particle System presenting a powder stream from the extinguisher 
 	 Attached to Extinguisher>Nozzle

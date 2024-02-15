@@ -21,7 +21,7 @@ public class ExtinguishingController : MonoBehaviour
     bool isPowder;
     float coefExtinguishing;
  
-    HintController hintController;
+    HintManager hintController;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class ExtinguishingController : MonoBehaviour
         coroutineTimeCounting = decreaseTime();
         isPowder = true;
         coefExtinguishing = 0f;
-        hintController = FindAnyObjectByType<HintController>();
+        hintController = FindAnyObjectByType<HintManager>();
     }
 
     Vector3 GetFirePosition()
