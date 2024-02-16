@@ -20,7 +20,7 @@ What is to be found on the UI:
 
 ### Scripts/
 
-public class [**AnimHintEvents**](Assets/Scripts/AnimHintEvents.cs) : MonoBehaviour
+**public class [AnimHintEvents](Assets/Scripts/AnimHintEvents.cs) : MonoBehaviour**
 
 Contains methods that starts by animation events. 
 Attached to **Extinguisher** GameObject
@@ -55,12 +55,12 @@ public void ShowSliderHint()
 public void HandleUpDown()
 ```
 
-public class [**AudioShotPlayer**](Assets/Scripts/AudioShotPlayer.cs) : MonoBehaviour
+**public class [**AudioShotPlayer**](Assets/Scripts/AudioShotPlayer.cs) : MonoBehaviour**
 
 Provides interface to play shot sounds. 
 Attached to **AudioShotPlayer** GameObject
 
-public class [**BoltGetting**](Assets/Scripts/BoltGetting.cs): MonoBehaviour, IPointerClickHandler
+**public class [BoltGetting](Assets/Scripts/BoltGetting.cs): MonoBehaviour, IPointerClickHandler**
 
 Handles events of the Bolt getting out. 
 Attached to **Bolt** GameObject (a child of **Extinguisher** GameObject)
@@ -73,7 +73,7 @@ public void OnPointerClick(PointerEventData eventData);
 public void OnCollisionEnter(Collision collision); 
 ```
 
-public class [**ExtinguishingController**](Assets/Scripts/ExtinguishingController.cs): MonoBehaviour
+**public class [ExtinguishingController](Assets/Scripts/ExtinguishingController.cs): MonoBehaviour**
 
 Controls the process of extinguishing. 
 Attached to **Extinguisher** GameObject
@@ -114,7 +114,7 @@ public float getCoefEstinguishing();
 public float getPowderCount(); 
 ```
 
-public class [**FireController**](Assets/Scripts/FireController.cs): MonoBehaviour
+**public class [FireController](Assets/Scripts/FireController.cs): MonoBehaviour**
 
 Controls the fire level.
 Attached to **BurningObject** GameObject 
@@ -143,12 +143,12 @@ public float getFireLevel();
 public float getMaxFireLevel();
 ```
 
-public class [**HandleUpDown**]( Assets/Scripts/HandleUpDown.cs):  MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+**public class [HandleUpDown]( Assets/Scripts/HandleUpDown.cs):  MonoBehaviour, IPointerDownHandler, IPointerUpHandler**
 
 Handles a click on the HandleTop Collider to start or stop extinguishing.
-Attached to **HandleTop** GameObject (a child of **Extinguisher>HandlePos** GameObject)
+Attached to ***HandleTop** GameObject (a child of **Extinguisher>HandlePos** GameObject)
 
-public class [**SettingNozzle**]( Assets/Scripts/SettingNozzle.cs) : MonoBehaviour, IPointerClickHandler
+**public class [SettingNozzle]( Assets/Scripts/SettingNozzle.cs) : MonoBehaviour, IPointerClickHandler**
 
 Set the Nozzle position for extinguishing. 
 Attached to **Nozzle** GameObject (a child of **Extinguisher** GameObject)
@@ -164,7 +164,7 @@ public void OnPointerClick(PointerEventData eventData);
 private void UpdateHosePoints(); 
 ```
 
-public class [**UIController**]( Assets/Scripts/UIController.cs) : MonoBehaviour
+**public class [UIController]( Assets/Scripts/UIController.cs) : MonoBehaviour**
 
 Controls UI sliders to show correct values of the powder count (extinguishing time), the fire level and also correct the extinguisher position. 
 Attached to **UI** GameObject with Canvas component
@@ -172,12 +172,12 @@ Attached to **UI** GameObject with Canvas component
 
 ### Scripts/Hints/
 
-public class [**HintController**]( Assets/Scripts/Hints/HintController.cs)  : MonoBehaviour
+**public class [HintController]( Assets/Scripts/Hints/HintController.cs)  : MonoBehaviour**
 
 Provides interface to show and hide hints with the right language.
 Attached to **HintController** GameObject
 
-public class [**Hints**]( Assets/Scripts/Hints/Hints.cs)   : ScriptableObject
+**public class [Hints]( Assets/Scripts/Hints/Hints.cs)   : ScriptableObject**
 
 Allows to create objects containing data of hints and their event names. Provides iterface to get a hint from the dictionary using an event name as a key.
 

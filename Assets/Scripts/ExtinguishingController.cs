@@ -15,7 +15,6 @@ public class ExtinguishingController : MonoBehaviour
     AudioSource audioExtinguishing;
   
     IEnumerator coroutineTimeCounting;
-    Vector3 firePosition;
     ParticleSystem fire;
   
     bool isPowder;
@@ -26,7 +25,6 @@ public class ExtinguishingController : MonoBehaviour
     void Start()
     {
         Init();
-        firePosition = GetFirePosition();
     }
 
     void Init()
@@ -121,7 +119,7 @@ public class ExtinguishingController : MonoBehaviour
         if (powder != null)
         {
             Vector3 powderPos = powder.gameObject.transform.position;
-            Vector3 distance = powderPos - firePosition;
+            Vector3 distance = powderPos - GetFirePosition(); ;
             float absY = Mathf.Abs(distance.y);
             float angle = Mathf.Atan(absY / Mathf.Abs(distance.x));
             float signAngle = distance.y / absY;
