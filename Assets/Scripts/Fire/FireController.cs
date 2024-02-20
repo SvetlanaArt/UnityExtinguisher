@@ -76,6 +76,7 @@ public class FireController : MonoBehaviour
         {
             hintController.ShowHint("FirePutOut");
         }
+        GameObject.Destroy(gameObject);
     }
     public float getFireLevel()
     {

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Burning
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: smoke
+    uniqueID: 1145916449
+    locked: 0
+  - name: fire
+    uniqueID: 3042439867
     locked: 0
