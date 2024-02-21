@@ -24,63 +24,30 @@ What is to be found on the UI:
 
 Contains methods that starts by animation events. 
 Attached to **Extinguisher** GameObject
-```
-// initialization
-void InitEvents();
-
-// starts at the end of the "BoltOutAnim" animation: 
-// the Bolt begins to fall down.
-public void BoltFallDown();
-
-// starts at the end of the "NozzleAnim" animation: 
-// enable the Nozzle Collider so a player can click on it.
-public void EnableHandle();
- 
-// starts at the start of the "BoltOutAnim" animation: 
-//plays a corresponding sound using AudioPlayer.
-public void BoltGetOut(); 
-
-// starts at the end or at the start of several animations
-// to show or hide a hint with "eventName".
-public void ShowHint(string eventName)
-
-// starts after using UI>SliderExtinguisher and 
-// shows hint of using the extinguishing handle 
-// if variable isExtingNeedPositioning is true.
-public void ShowSliderHint()
-
-// starts at the start of the "HandleUpAnim" and 
-// the "HandleDownAnim" animations: plays a corresponding 
-// sound using AudioPlayer.
-public void HandleUpDown()
-```
 
 **public class [**AudioShotPlayer**](Assets/Scripts/AudioShotPlayer.cs) : MonoBehaviour**
 
 Provides interface to play shot sounds. 
 Attached to **AudioShotPlayer** GameObject
 
-**public class [BoltGetting](Assets/Scripts/BoltGetting.cs): MonoBehaviour, IPointerClickHandler**
+**public class [UIController]( Assets/Scripts/UIController.cs) : MonoBehaviour**
+
+Controls UI sliders to show correct values of the powder count (extinguishing time), the fire level and also correct the extinguisher position. 
+Attached to **UI** GameObject with Canvas component
+
+### Scripts/Extinguisher		 
+
+**public class [BoltGetting](Assets/Scripts/Extinguisher/BoltGetting.cs): MonoBehaviour, IPointerClickHandler**
 
 Handles events of the Bolt getting out. 
 Attached to **Bolt** GameObject (a child of **Extinguisher** GameObject)
 
-```
-// handle a click on the Bolt Collider
-public void OnPointerClick(PointerEventData eventData);
+**public class [ExtinguishingController](Assets/Scripts/Extinguisher/ExtinguishingController.cs): MonoBehaviour**
 
-// handle a Bolt collision with the Plane Collider
-public void OnCollisionEnter(Collision collision); 
-```
-
-**public class [ExtinguishingController](Assets/Scripts/ExtinguishingController.cs): MonoBehaviour**
-
-Controls the process of extinguishing. 
+Controls the process of extinguishing. Uses coroutine to control time of extinguishing (powder count).
 Attached to **Extinguisher** GameObject
-```
-//initialization
-void Init();
 
+```
 // finds a Burning Object and return position of the Fire
 Vector3 GetFirePosition();
 
@@ -108,20 +75,35 @@ void setCoefExtinguishing();
 
 // returns the extinguishing efficiency coefficient
 public float getCoefEstinguishing();
+```
+**public class [HandleUpDown]( Assets/Scripts/Extinguisher/HandleUpDown.cs):  MonoBehaviour, IPointerDownHandler, IPointerUpHandler**
 
-// returns the value of the remaining extinguishing time
-// until the powder is finished
-public float getPowderCount(); 
+Handles a click on the HandleTop Collider to start or stop extinguishing.
+Attached to ***HandleTop** GameObject (a child of **Extinguisher>HandlePos** GameObject)
+
+**public class [SettingNozzle]( Assets/Scripts/Extinguisher/SettingNozzle.cs) : MonoBehaviour, IPointerClickHandler**
+
+Set the Nozzle position for extinguishing. 
+Attached to **Nozzle** GameObject (a child of **Extinguisher** GameObject)
+```
+// saves initial points positions of the Hose
+private void InitPoints();
+
+// runs the "NozzleAnim" animation
+public void OnPointerClick(PointerEventData eventData);
+
+// allows to lock the hose points 
+// so that the hose remains attached to the extinguisher during animation
+private void UpdateHosePoints(); 
 ```
 
-**public class [FireController](Assets/Scripts/FireController.cs): MonoBehaviour**
+### Scripts/Fire/
+
+**public class [FireController](Assets/Scripts/Fire/FireController.cs): MonoBehaviour**
 
 Controls the fire level.
 Attached to **BurningObject** GameObject 
 ```
-//initialization
-void Init();
-
 // changes the fire level which depends on 
 // the extinguishing process
 void ChangeFireLevel();
@@ -135,40 +117,17 @@ void FireDown();
 // stops the fire (Particle System, sound) and 
 // show a hint about this event
 void FireStop();
-
-// return the fire level
-public float getFireLevel();
-
-// return the maximum value of a fire level
-public float getMaxFireLevel();
 ```
 
-**public class [HandleUpDown]( Assets/Scripts/HandleUpDown.cs):  MonoBehaviour, IPointerDownHandler, IPointerUpHandler**
+**public class [LightManager](Assets/Scripts/Fire/LightManager.cs) : MonoBehaviour**
 
-Handles a click on the HandleTop Collider to start or stop extinguishing.
-Attached to ***HandleTop** GameObject (a child of **Extinguisher>HandlePos** GameObject)
+Creates a flickering light effect and adjusts the intensity of the light to match the level of the fire.
+Attached to **Light** GameObject (a child of **Fire** GameObject)
 
-**public class [SettingNozzle]( Assets/Scripts/SettingNozzle.cs) : MonoBehaviour, IPointerClickHandler**
+**public class [SmokeLevelCorrector](Assets/Scripts/Fire/SmokeLevelCorrector.cs) : MonoBehaviour**
 
-Set the Nozzle position for extinguishing. 
-Attached to **Nozzle** GameObject (a child of **Extinguisher** GameObject)
-```
-// saves initial points positions of the Hose
-private void InitPoints();
-
-// runs the "NozzleAnim" animation
-public void OnPointerClick(PointerEventData eventData);
-
-// allows to lock the hose points 
-// so that the hose remains attached to the extinguisher
-private void UpdateHosePoints(); 
-```
-
-**public class [UIController]( Assets/Scripts/UIController.cs) : MonoBehaviour**
-
-Controls UI sliders to show correct values of the powder count (extinguishing time), the fire level and also correct the extinguisher position. 
-Attached to **UI** GameObject with Canvas component
-		 
+Correct the smoke level to match the level of the fire.
+Attached to **Smoke** GameObject (a child of **Fire** GameObject)
 
 ### Scripts/Hints/
 
@@ -192,14 +151,18 @@ Animation component attached to the **Extinguisher GameObject**
 
 ### Particle systems:
 
-- **Powder** - GameObject containes a Particle System presenting a powder stream from the extinguisher.  Attached to **Extinguisher>Nozzle**.
-- **Fire** - 	 GameObject containes a Particle System presenting the fire.	 Attached to **BirningObject**.
+- GameObject **Powder** - GameObject containes a Particle System presenting a powder stream from the extinguisher. It is a chiled of **Extinguisher>Nozzle**.
+- GameObject **Fire** - GameObject containes a Particle System presenting the fire. It is a chiled of **BirningObject**.
+- GameObject **Smoke** - GameObject containes a Particle System presenting the smoke. It is a chiled of **BirningObject>Fire**.
 
 
 ### LineRenderer:
 
-- **Hose** -   GameObject containes a Line Renderer component presenting the extinguisher hose (it connects the extinguisher with the nozzle). Attached to **Extinguisher>Nozzle**.  
+- GameObject **Hose** -   GameObject containes a Line Renderer component presenting the extinguisher hose (it connects the extinguisher with the nozzle). It is a chiled of **Extinguisher>Nozzle**.  
 
+### WindZone:
+
+- GameObject **WindZone** - Used in spherical mode to make more real behavior of the fire. It is a chiled of **BurningObject>Fire**
 
 ### Free resources used in the project:
 

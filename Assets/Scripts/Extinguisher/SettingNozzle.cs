@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Set the Nozzle position for extinguishing. 
+/// </summary>
 public class SettingNozzle : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] [Range(0,4)]  int countOfStaticPoints = 3;
@@ -15,6 +18,9 @@ public class SettingNozzle : MonoBehaviour, IPointerClickHandler
         InitPoints();
     }
 
+    /// <summary>
+    /// Save initial points positions of the Hose
+    /// </summary>
     void InitPoints()
     {
         if (lineRenderer != null)
@@ -30,6 +36,9 @@ public class SettingNozzle : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    /// <summary>
+    /// runs the "NozzleAnim" animation
+    /// </summary>
     public void OnPointerClick(PointerEventData eventData)
     {
         GetComponent<Collider>().enabled = false;
@@ -43,7 +52,10 @@ public class SettingNozzle : MonoBehaviour, IPointerClickHandler
     {
         UpdateHosePoints();
     }
-
+    /// <summary>
+    /// allows to lock the hose points 
+    /// so that the hose remains attached to the extinguisher
+    /// </summary>
     private void UpdateHosePoints()
     {
         if (lineRenderer != null)

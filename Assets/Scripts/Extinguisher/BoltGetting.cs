@@ -1,6 +1,11 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+/// <summary>
+/// Handles events of the Bolt getting out.
+/// </summary>
 public class BoltGetting: MonoBehaviour, IPointerClickHandler
 
 {

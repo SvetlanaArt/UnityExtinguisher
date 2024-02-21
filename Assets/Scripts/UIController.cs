@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controls UI sliders to show correct values of the powder count (extinguishing time),
+/// the fire level and also correct the extinguisher position. 
+/// </summary>
 public class UIController : MonoBehaviour
 {
     [Header("Extinguisher")]

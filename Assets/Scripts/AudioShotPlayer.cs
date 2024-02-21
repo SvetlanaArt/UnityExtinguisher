@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Provides interface to play shot sounds. 
+/// </summary>
+
 public class AudioShotPlayer : MonoBehaviour
 {
     [Header("Bolt")]
@@ -11,7 +15,7 @@ public class AudioShotPlayer : MonoBehaviour
     [SerializeField] AudioClip handleGetDownUp;
     [SerializeField][Range(0f, 1f)] float handleSoundVolume = 1f;
 
-     public void PlayBoltGetSound(Vector3 pos)
+    public void PlayBoltGetSound(Vector3 pos)
     {
         PlaySound(boltGetOut, boltSoundVolume, pos);
     }
@@ -26,6 +30,12 @@ public class AudioShotPlayer : MonoBehaviour
         PlaySound(handleGetDownUp, handleSoundVolume, pos);
     }
 
+    /// <summary>
+    /// Play clip
+    /// </summary>
+    /// <param name="sound"> Clip </param>
+    /// <param name="volume"> Sound volume </param>
+    /// <param name="pos"> Position of clip playing </param>
       void PlaySound(AudioClip sound, float volume, Vector3 pos)
     {
         if (sound != null)

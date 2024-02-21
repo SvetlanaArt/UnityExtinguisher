@@ -1,39 +1,54 @@
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
+/// <summary>
+/// Controls the fire level
+/// </summary>
 public class FireController : MonoBehaviour
 {
     [SerializeField] ParticleSystem fire;
     [SerializeField] ExtinguishingController extinguishController;
     [Header("Counting parameters")]
+    // extinguishing time if the player sets the extinguisher right
     [SerializeField] float timeFire = 6f;
-    [SerializeField] float fireLevel = 1.2f;
-    [SerializeField] float maxFireLevel = 1.2f;
     [SerializeField] float speedFireUp = 0.2f;
 
     MainModule mainModuleFire;
     AudioSource audioFire;
     HintManager hintController;
 
+    // current level
+    float fireLevel;
+    // maximum level from start
+    float maxFireLevel;
+
     void Start()
     {
-        Init();
+        InitComponents();
+        InitFireLevel();
     }
-
-    private void Init()
+    private void InitComponents()
     {
-        fireLevel = maxFireLevel;
-        mainModuleFire = fire.main;
         audioFire = GetComponent<AudioSource>();
         hintController = FindAnyObjectByType<HintManager>();
     }
 
-    void Update()
+    private void InitFireLevel()
+    {
+        mainModuleFire = fire.main;
+        maxFireLevel = mainModuleFire.startLifetime.constantMax;
+        fireLevel = maxFireLevel;
+    }
+
+     void Update()
     {
         ChangeFireLevel();
         audioFire.volume = fireLevel / maxFireLevel;
     }
 
+    /// <summary>
+    /// Change the fire level which depends on the extinguishing process
+    /// </summary>
     void ChangeFireLevel()
     {
         if (fire.isPlaying)
@@ -51,12 +66,19 @@ public class FireController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increase the fire level
+    /// </summary>
     void FireUp()
     {
         fireLevel += speedFireUp * Time.deltaTime;
         fireLevel = Mathf.Min(maxFireLevel, fireLevel);
     }
 
+    /// <summary>
+    /// Decrease the fire level
+    /// </summary>
+    /// <param name="coef"> The extinguishing efficiency coefficient </param>
     void FireDown(float coef)
     {
         float speedOfFireDown = (maxFireLevel / timeFire) * coef;
@@ -67,7 +89,9 @@ public class FireController : MonoBehaviour
             FireStop();
         }
     }
-
+    /// <summary>
+    /// Stop the fire (Particle System, sound) and show a hint about this event
+    ///</summary>
     void FireStop()
     {
         fire.Stop();

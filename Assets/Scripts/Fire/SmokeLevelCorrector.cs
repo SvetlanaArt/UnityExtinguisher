@@ -1,6 +1,9 @@
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
+/// <summary>
+/// Correct the smoke level to match the level of the fire
+/// </summary>
 public class SmokeLevelCorrector : MonoBehaviour
 {
     // smoke to fire startLifeTime ratio

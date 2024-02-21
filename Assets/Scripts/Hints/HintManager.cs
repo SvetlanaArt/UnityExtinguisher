@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Provides interface to show and hide hints with the right language.
+/// </summary>
 public class HintManager : MonoBehaviour
 {
     [SerializeField] Hints[] hintsSet;

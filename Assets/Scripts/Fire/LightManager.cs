@@ -1,22 +1,21 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using static UnityEngine.ParticleSystem;
 
+/// <summary>
+/// Manage the light intensity
+/// </summary>
 public class LightManager : MonoBehaviour
 {
     [SerializeField] float flickerSpeed = 1f;
     [SerializeField] float intensityVariance = 2f;
-    // light intencity to fire startLifeTime ratio
-    float coefLightToFireLevel;
-
-    float currentIntensityVariance;
-
+ 
     MainModule mainModuleFire;
     Light pointLight;
-    
+
+    // light intencity to fire startLifeTime ratio
+    float coefLightToFireLevel;
+    float currentIntensityVariance;
 
     void Start()
     {
@@ -26,6 +25,9 @@ public class LightManager : MonoBehaviour
         StartCoroutine(Flicker());
     }
 
+    /// <summary>
+    /// Create a flickering light effect
+    /// </summary>
     IEnumerator Flicker()
     {
         while (true)
@@ -49,12 +51,14 @@ public class LightManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+      void Update()
     {
         CorrectLightIntensity();
     }
 
+    /// <summary>
+    /// Adjust the intensity of the light to match the level of the fire
+    /// </summary>
     void CorrectLightIntensity()
     {
         pointLight.intensity = mainModuleFire.startLifetime.constantMax *

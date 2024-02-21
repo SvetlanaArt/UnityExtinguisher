@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// To create object containing data of hints and their event names. 
+/// Provides iterface to get a hint from the dictionary using an event name as a key.
+/// </summary>
 
 [CreateAssetMenu(menuName = "Hints", fileName = "New Hint Set")]
+
 public class Hints : ScriptableObject
 {
     [Serializable]
@@ -31,6 +36,11 @@ public class Hints : ScriptableObject
         return "";
     }
 
+    /// <summary>
+    /// Get a hint
+    /// </summary>
+    /// <param name="eventName"> Name of event</param>
+    /// <returns>Text of a hint</returns>
     public string getEventHint(string eventName)
     {
         if (eventHintsDic == null)
