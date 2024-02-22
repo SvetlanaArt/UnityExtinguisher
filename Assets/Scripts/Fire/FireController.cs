@@ -22,7 +22,7 @@ public class FireController : MonoBehaviour
     // maximum level from start
     float maxFireLevel;
 
-    void Start()
+    void Awake()
     {
         InitComponents();
         InitFireLevel();
